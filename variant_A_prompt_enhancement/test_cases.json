@@ -1,0 +1,405 @@
+{
+  "test_categories": {
+    "radical_semantic_inference": {
+      "description": "测试部首语义推断能力（假设1）",
+      "cases": [
+        {
+          "id": "R1",
+          "character": "汸",
+          "pinyin": "fāng",
+          "radical": "氵",
+          "phonetic": "方",
+          "meaning": "水名",
+          "question": "这个字可能和什么有关？",
+          "expected_answer": "水、河流、液体",
+          "hints": ["部首氵表示与水相关"]
+        },
+        {
+          "id": "R2",
+          "character": "炇",
+          "pinyin": "fū",
+          "radical": "火",
+          "phonetic": "攵",
+          "meaning": "火也",
+          "question": "这个字可能和什么有关？",
+          "expected_answer": "火、燃烧、热",
+          "hints": ["部首火表示与火相关"]
+        },
+        {
+          "id": "R3",
+          "character": "杻",
+          "pinyin": "niǔ",
+          "radical": "木",
+          "phonetic": "丑",
+          "meaning": "树名",
+          "question": "这个字可能和什么有关？",
+          "expected_answer": "树木、植物、木材",
+          "hints": ["部首木表示与树木相关"]
+        },
+        {
+          "id": "R4",
+          "character": "犴",
+          "pinyin": "àn",
+          "radical": "犭",
+          "phonetic": "干",
+          "meaning": "古代乡亭的拘留所",
+          "question": "这个字可能和什么有关？",
+          "expected_answer": "动物、狗、犬类",
+          "hints": ["部首犭表示与动物相关"]
+        },
+        {
+          "id": "R5",
+          "character": "砯",
+          "pinyin": "pīng",
+          "radical": "石",
+          "phonetic": "平",
+          "meaning": "水击岩石的声音",
+          "question": "这个字可能和什么有关？",
+          "expected_answer": "石头、岩石、矿物",
+          "hints": ["部首石表示与石头相关"]
+        }
+      ]
+    },
+    "phonetic_pronunciation_inference": {
+      "description": "测试声旁读音推断能力（假设2）",
+      "cases": [
+        {
+          "id": "P1",
+          "character": "汸",
+          "pinyin": "fāng",
+          "radical": "氵",
+          "phonetic": "方",
+          "question": "这个字的读音可能接近以下哪个字？",
+          "options": ["放(fàng)", "访(fǎng)", "房(fáng)", "方(fāng)"],
+          "correct_answer": "方(fāng)",
+          "explanation": "声旁方提示读音为fāng"
+        },
+        {
+          "id": "P2",
+          "character": "靛",
+          "pinyin": "diàn",
+          "radical": "青",
+          "phonetic": "定",
+          "question": "这个字的读音可能接近以下哪个字？",
+          "options": ["定(dìng)", "绽(zhàn)", "锭(dìng)", "碇(dìng)"],
+          "correct_answer": "定(dìng)",
+          "explanation": "声旁定提示读音为dian/ding"
+        },
+        {
+          "id": "P3",
+          "character": "驸",
+          "pinyin": "fù",
+          "radical": "马",
+          "phonetic": "付",
+          "question": "这个字的读音可能接近以下哪个字？",
+          "options": ["付(fù)", "符(fú)", "府(fǔ)", "附(fù)"],
+          "correct_answer": "付(fù)",
+          "explanation": "声旁付提示读音为fù"
+        },
+        {
+          "id": "P4",
+          "character": "谥",
+          "pinyin": "shì",
+          "radical": "讠",
+          "phonetic": "益",
+          "question": "这个字的读音可能接近以下哪个字？",
+          "options": ["益(yì)", "溢(yì)", "缢(yì)", "嗌(ài)"],
+          "correct_answer": "益(yì)",
+          "explanation": "声旁益提示读音为shi/yi（古音相近）"
+        }
+      ]
+    },
+    "combined_inference": {
+      "description": "测试部首+声旁联合推断（假设3）",
+      "cases": [
+        {
+          "id": "C1",
+          "character": "淦",
+          "pinyin": "gàn",
+          "radical": "氵",
+          "phonetic": "金",
+          "question": "根据部首和声旁，推测这个字的意思和读音？",
+          "expected_semantic": "与水有关，可能指水进入船中",
+          "expected_pronunciation": "读音可能与'金(jīn)'相近",
+          "notes": "淦本义为水入船中，现多用于网络用语"
+        },
+        {
+          "id": "C2",
+          "character": "燊",
+          "pinyin": "shēn",
+          "radical": "火",
+          "phonetic": "莘",
+          "question": "根据部首和声旁，推测这个字的意思和读音？",
+          "expected_semantic": "与火有关，可能表示旺盛、炽热",
+          "expected_pronunciation": "读音可能与'莘(shēn)'相近",
+          "notes": "燊表示旺盛、兴盛"
+        },
+        {
+          "id": "C3",
+          "character": "犇",
+          "pinyin": "bēn",
+          "components": "三个牛",
+          "question": "根据字形结构，推测这个字的意思和读音？",
+          "expected_semantic": "与牛有关，可能表示众多牛奔跑",
+          "expected_pronunciation": "读音可能与'牛'或'奔'有关",
+          "notes": "犇是'奔'的异体字，三牛表示牛群奔跑"
+        }
+      ]
+    },
+    "homophone_discrimination": {
+      "description": "测试同音字辨析能力",
+      "cases": [
+        {
+          "id": "H1",
+          "context": "他___江上的一叶扁舟",
+          "options": ["在", "再"],
+          "correct": "在",
+          "pinyin": "zài",
+          "question": "选择正确的字填空，并解释为什么"
+        },
+        {
+          "id": "H2",
+          "context": "这是我的___书",
+          "options": ["秘", "密"],
+          "correct": "秘",
+          "pinyin": "mì",
+          "enhanced_info": "秘(禾+必,mì) 密(宀+山,mì)",
+          "question": "选择正确的字填空，部首能给你什么线索？"
+        },
+        {
+          "id": "H3",
+          "context": "她穿着洁___的裙子",
+          "options": ["白", "百"],
+          "correct": "白",
+          "pinyin": "bái",
+          "enhanced_info": "白(bái,象形字，像日光之色) 百(bǎi,数目)",
+          "question": "选择正确的字填空，并解释两个字的区别"
+        }
+      ]
+    },
+    "common_character_interference": {
+      "description": "测试常见字加注释是否干扰（假设4）",
+      "cases": [
+        {
+          "id": "I1",
+          "task": "speed_test",
+          "character": "的",
+          "pinyin": "de",
+          "radical": "白",
+          "sentence": "这是一本___书",
+          "compare": ["不加注释: '这是一本的书'", "加注释: '这是一本的(de,白勺)书'"],
+          "question": "哪种方式让你更快理解句子？"
+        },
+        {
+          "id": "I2",
+          "task": "accuracy_test",
+          "sentence": "今天的天气很好",
+          "enhanced": "今天(jīntiān)的(de,白勺)天(tiān)气(qì,气)很(hěn)好(hǎo,女+子)",
+          "question": "所有字加拼音部首注释，是否有助于理解？还是信息过载？"
+        }
+      ]
+    }
+  },
+  "hard_cases": {
+    "description": "Claude 专用高难度用例（先验知识弱，增强 prompt 价值大）",
+    "stacked_character_pronunciation": {
+      "description": "叠加构字（会意字）的读音推断——无声旁可用，Claude baseline 7/10",
+      "cases": [
+        {
+          "id": "HC1",
+          "character": "虪",
+          "components": "三虎",
+          "correct_pinyin": "shù",
+          "meaning": "虎行貌",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "8/10（语义对，读音不知道）",
+          "notes": "叠加构字，无声旁，读音需外部提供"
+        },
+        {
+          "id": "HC2",
+          "character": "龘",
+          "components": "三龙",
+          "correct_pinyin": "dá",
+          "meaning": "群龙腾飞貌",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "7/10（语义对，读音不知道）"
+        },
+        {
+          "id": "HC3",
+          "character": "鱻",
+          "components": "三鱼",
+          "correct_pinyin": "xiān",
+          "meaning": "鲜的异体字，新鲜之义",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "9/10（猜到 xiān 方向）"
+        }
+      ]
+    },
+    "obscure_phonetic_compounds": {
+      "description": "极生僻形声字，Claude 先验≤4/10，增强 prompt 可达 10/10",
+      "cases": [
+        {
+          "id": "HP1",
+          "character": "浯",
+          "radical": "氵",
+          "phonetic": "吾",
+          "correct_pinyin": "wú",
+          "meaning": "浯水，山东一条河",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "3/10（纯推断）"
+        },
+        {
+          "id": "HP2",
+          "character": "棻",
+          "radical": "木",
+          "phonetic": "分",
+          "correct_pinyin": "fēn",
+          "meaning": "香木",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "3/10（纯推断）"
+        },
+        {
+          "id": "HP3",
+          "character": "朸",
+          "radical": "木",
+          "phonetic": "力",
+          "correct_pinyin": "lè",
+          "meaning": "木节，树木坚硬部分",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "4/10（方向对，不确定）"
+        },
+        {
+          "id": "HP4",
+          "character": "氍",
+          "radical": "毛",
+          "phonetic": "区",
+          "correct_pinyin": "qú",
+          "meaning": "毛织物，常见「氍毹」（毛毯）",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "claude_baseline_score": "7/10（语义对，读音不确定）"
+        }
+      ]
+    },
+    "phonetic_obsolescence": {
+      "description": "声旁已失效（古音演变），测试 H5 假设",
+      "cases": [
+        {
+          "id": "HO1",
+          "character": "汭",
+          "radical": "氵",
+          "phonetic": "内",
+          "phonetic_modern_reading": "nèi",
+          "correct_pinyin": "ruì",
+          "meaning": "水湾，河流交汇处",
+          "question": "这个字可能和什么有关？读音是什么？",
+          "hypothesis": "H5",
+          "notes": "声旁内(nèi)≠实际读音ruì，声旁严重失效"
+        },
+        {
+          "id": "HO2",
+          "character": "谥",
+          "radical": "讠",
+          "phonetic": "益",
+          "phonetic_modern_reading": "yì",
+          "correct_pinyin": "shì",
+          "meaning": "古代帝王/名人死后所加的称号",
+          "options": ["益(yì)", "溢(yì)", "缢(yì)", "嗌(ài)"],
+          "question": "这个字的读音可能接近以下哪个字？",
+          "hypothesis": "H5",
+          "notes": "古音yi和shi相近，现代声旁失效"
+        }
+      ]
+    }
+  },
+  "variant_D_cases": {
+    "description": "变体D：对比破坏型实验用例。对生僻字提供正确/错误的部首或声旁，测量推断偏转效果。",
+    "experiment_design": {
+      "group_A": "正确部首 + 正确声旁（对照组）",
+      "group_B": "错误部首 + 正确声旁（测部首对语义的因果影响）",
+      "group_C": "正确部首 + 错误声旁（测声旁对读音的因果影响）",
+      "group_D": "正确部首，无声旁（纯部首条件，测语义推断下限）"
+    },
+    "key_finding": "改变部首只影响语义推断，改变声旁只影响读音推断，两个维度完全独立——因果关系确立",
+    "cases": [
+      {
+        "id": "D_FU",
+        "character": "浯",
+        "correct_radical": "氵",
+        "correct_phonetic": "吾",
+        "correct_pinyin": "wú",
+        "wrong_radical_for_B": "火",
+        "wrong_phonetic_for_C": "土",
+        "expected_B_semantic": "火/热相关（应为水相关）",
+        "expected_C_reading": "tǔ附近（应为wú）",
+        "question": "请根据以下信息推断这个汉字的意思和读音",
+        "result_A": "水相关，读wú ✅",
+        "result_B": "火相关，读wú（语义偏转，读音正确）",
+        "result_C": "水相关，读tǔ（语义正确，读音偏转）"
+      },
+      {
+        "id": "D_FEN",
+        "character": "棻",
+        "correct_radical": "木",
+        "correct_phonetic": "分",
+        "correct_pinyin": "fēn",
+        "wrong_radical_for_B": "钅",
+        "wrong_phonetic_for_C": "令",
+        "expected_B_semantic": "金属相关（应为木/植物相关）",
+        "expected_C_reading": "lìng附近（应为fēn）",
+        "question": "请根据以下信息推断这个汉字的意思和读音",
+        "result_A": "木/植物相关，读fēn ✅",
+        "result_B": "金属相关，读fēn（语义偏转，读音正确）",
+        "result_C": "木相关，读líng（语义正确，读音偏转）"
+      },
+      {
+        "id": "D_RUI",
+        "character": "汭",
+        "correct_radical": "氵",
+        "correct_phonetic": "内",
+        "correct_pinyin": "ruì",
+        "wrong_phonetic_for_C": "月",
+        "question": "请根据以下信息推断这个汉字的意思和读音",
+        "special_note": "H5 测试：声旁'内'现代读nèi，而实际读音ruì。A组结果显示模型按nèi推断——忠实地犯错",
+        "result_A": "水相关，读音接近nèi（声旁失效，模型不知道）",
+        "result_C": "水相关，读yuè（错误声旁月导致偏转）"
+      },
+      {
+        "id": "D_LE",
+        "character": "朸",
+        "correct_radical": "木",
+        "correct_phonetic": "力",
+        "correct_pinyin": "lè",
+        "wrong_radical_for_B": "土",
+        "wrong_phonetic_for_C": "口",
+        "question": "请根据以下信息推断这个汉字的意思和读音",
+        "result_A": "木/树木相关，读lè ✅",
+        "result_B": "土/地貌相关，读lè（语义偏转，读音正确）",
+        "result_C": "木相关，读kǒu（语义正确，读音偏转）"
+      }
+    ]
+  },
+  "prompt_templates": {
+    "baseline": "请回答以下关于汉字的问题：\n\n问题：{question}\n\n目标字：{character}",
+    "pinyin_only": "请回答以下关于汉字的问题：\n\n目标字：{character}（读音{pinyin}）\n\n问题：{question}\n\n提示：这个字的读音是{pinyin}。",
+    "radical_only": "请回答以下关于汉字的问题：\n\n目标字：{character}（部首：{radical}）\n\n问题：{question}\n\n提示：这个字的部首是'{radical}'，在汉字中，部首通常提示字义类别。",
+    "full_enhanced": "请回答以下关于汉字的问题：\n\n目标字：{character}（部首：{radical}，声旁：{phonetic}，读音：{pinyin}）\n\n问题：{question}\n\n提示：\n1. 部首'{radical}'通常与{radical_hint}有关\n2. 声旁'{phonetic}'提示读音可能与{phonetic_pinyin}相近\n3. 这是一个形声字，形旁表意，声旁表音",
+    "expert_mode": "你是一个汉字学专家。请利用形声字的构字规律回答以下问题。\n\n目标字：{character}\n结构分析：\n- 部首（形旁）：{radical} → 表示与{radical_meaning}相关\n- 声旁（声部）：{phonetic} → 提示读音为{pinyin}\n\n问题：{question}"
+  },
+  "evaluation_criteria": {
+    "semantic_inference": [
+      "回答是否提到了部首对应的语义类别",
+      "回答是否有合理的推理过程",
+      "回答是否准确（与标准答案匹配度）"
+    ],
+    "pronunciation_inference": [
+      "是否正确识别声旁",
+      "读音推断是否合理",
+      "是否解释了推断依据"
+    ],
+    "reasoning_quality": [
+      "是否使用了部首信息",
+      "是否使用了声旁信息",
+      "推理是否逻辑清晰"
+    ]
+  }
+}
