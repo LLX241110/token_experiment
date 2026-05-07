@@ -68,8 +68,9 @@ class ModelAPI:
             api_key = os.getenv("OPENAI_API_KEY")
             if not api_key:
                 raise ValueError("未设置 OPENAI_API_KEY 环境变量")
-            self.client = OpenAI(api_key=api_key)
-            self.model = "gpt-4"
+            base_url = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+            self.client = OpenAI(api_key=api_key, base_url=base_url)
+            self.model = "gpt-4o-mini"
 
     def generate(self, prompt: str, max_tokens: int = 500) -> tuple[str, float]:
         """生成回答，返回(回答内容, 延迟ms)"""
