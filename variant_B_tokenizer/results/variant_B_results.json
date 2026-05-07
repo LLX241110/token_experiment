@@ -1,0 +1,467 @@
+{
+  "baseline": {
+    "常用字": {
+      "清": {
+        "tokens": [
+          "æ",
+          "¸",
+          "ħ"
+        ],
+        "count": 3
+      },
+      "河": {
+        "tokens": [
+          "æ²³"
+        ],
+        "count": 1
+      },
+      "火": {
+        "tokens": [
+          "çģ«"
+        ],
+        "count": 1
+      },
+      "木": {
+        "tokens": [
+          "æľ¨"
+        ],
+        "count": 1
+      },
+      "石": {
+        "tokens": [
+          "çŁ³"
+        ],
+        "count": 1
+      },
+      "水": {
+        "tokens": [
+          "æ°´"
+        ],
+        "count": 1
+      },
+      "江": {
+        "tokens": [
+          "æ±",
+          "Ł"
+        ],
+        "count": 2
+      },
+      "湖": {
+        "tokens": [
+          "æ¹",
+          "ĸ"
+        ],
+        "count": 2
+      }
+    },
+    "生僻形声字": {
+      "汸": {
+        "tokens": [
+          "æ±",
+          "¸"
+        ],
+        "count": 2
+      },
+      "棻": {
+        "tokens": [
+          "æ£",
+          "»"
+        ],
+        "count": 2
+      },
+      "炇": {
+        "tokens": [
+          "çĤ",
+          "ĩ"
+        ],
+        "count": 2
+      },
+      "砯": {
+        "tokens": [
+          "çł",
+          "¯"
+        ],
+        "count": 2
+      },
+      "犴": {
+        "tokens": [
+          "çĬ",
+          "´"
+        ],
+        "count": 2
+      },
+      "浯": {
+        "tokens": [
+          "æµ",
+          "¯"
+        ],
+        "count": 2
+      },
+      "朸": {
+        "tokens": [
+          "æľ",
+          "¸"
+        ],
+        "count": 2
+      },
+      "汭": {
+        "tokens": [
+          "æ±",
+          "Ń"
+        ],
+        "count": 2
+      }
+    },
+    "叠加构字": {
+      "淼": {
+        "tokens": [
+          "æ",
+          "·",
+          "¼"
+        ],
+        "count": 3
+      },
+      "森": {
+        "tokens": [
+          "æ£®"
+        ],
+        "count": 1
+      },
+      "炎": {
+        "tokens": [
+          "çĤ",
+          "İ"
+        ],
+        "count": 2
+      },
+      "犇": {
+        "tokens": [
+          "çĬ",
+          "ĩ"
+        ],
+        "count": 2
+      },
+      "鱻": {
+        "tokens": [
+          "é",
+          "±»"
+        ],
+        "count": 2
+      }
+    },
+    "部首本身": {
+      "氵": {
+        "tokens": [
+          "æ°µ"
+        ],
+        "count": 1
+      },
+      "火": {
+        "tokens": [
+          "çģ«"
+        ],
+        "count": 1
+      },
+      "木": {
+        "tokens": [
+          "æľ¨"
+        ],
+        "count": 1
+      },
+      "石": {
+        "tokens": [
+          "çŁ³"
+        ],
+        "count": 1
+      },
+      "犭": {
+        "tokens": [
+          "çĬ",
+          "Ń"
+        ],
+        "count": 2
+      }
+    }
+  },
+  "enhanced": {
+    "常用字": {
+      "清": {
+        "tokens": [
+          "æ¸ħ"
+        ],
+        "count": 1
+      },
+      "河": {
+        "tokens": [
+          "æ²³"
+        ],
+        "count": 1
+      },
+      "火": {
+        "tokens": [
+          "çģ«"
+        ],
+        "count": 1
+      },
+      "木": {
+        "tokens": [
+          "æľ¨"
+        ],
+        "count": 1
+      },
+      "石": {
+        "tokens": [
+          "çŁ³"
+        ],
+        "count": 1
+      },
+      "水": {
+        "tokens": [
+          "æ°´"
+        ],
+        "count": 1
+      },
+      "江": {
+        "tokens": [
+          "æ±Ł"
+        ],
+        "count": 1
+      },
+      "湖": {
+        "tokens": [
+          "æ¹ĸ"
+        ],
+        "count": 1
+      }
+    },
+    "生僻形声字": {
+      "汸": {
+        "tokens": [
+          "æ±¸"
+        ],
+        "count": 1
+      },
+      "棻": {
+        "tokens": [
+          "æ£»"
+        ],
+        "count": 1
+      },
+      "炇": {
+        "tokens": [
+          "çĤĩ"
+        ],
+        "count": 1
+      },
+      "砯": {
+        "tokens": [
+          "çł¯"
+        ],
+        "count": 1
+      },
+      "犴": {
+        "tokens": [
+          "çĬ´"
+        ],
+        "count": 1
+      },
+      "浯": {
+        "tokens": [
+          "æµ¯"
+        ],
+        "count": 1
+      },
+      "朸": {
+        "tokens": [
+          "æľ¸"
+        ],
+        "count": 1
+      },
+      "汭": {
+        "tokens": [
+          "æ±",
+          "Ń"
+        ],
+        "count": 2
+      }
+    },
+    "叠加构字": {
+      "淼": {
+        "tokens": [
+          "æ",
+          "·",
+          "¼"
+        ],
+        "count": 3
+      },
+      "森": {
+        "tokens": [
+          "æ£®"
+        ],
+        "count": 1
+      },
+      "炎": {
+        "tokens": [
+          "çĤİ"
+        ],
+        "count": 1
+      },
+      "犇": {
+        "tokens": [
+          "çĬ",
+          "ĩ"
+        ],
+        "count": 2
+      },
+      "鱻": {
+        "tokens": [
+          "é",
+          "±»"
+        ],
+        "count": 2
+      }
+    },
+    "部首本身": {
+      "氵": {
+        "tokens": [
+          "æ°µ"
+        ],
+        "count": 1
+      },
+      "火": {
+        "tokens": [
+          "çģ«"
+        ],
+        "count": 1
+      },
+      "木": {
+        "tokens": [
+          "æľ¨"
+        ],
+        "count": 1
+      },
+      "石": {
+        "tokens": [
+          "çŁ³"
+        ],
+        "count": 1
+      },
+      "犭": {
+        "tokens": [
+          "çĬŃ"
+        ],
+        "count": 1
+      }
+    }
+  },
+  "summary": [
+    {
+      "char": "汸",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "棻",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "炇",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "砯",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "犴",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "浯",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "朸",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "汭",
+      "baseline": 2,
+      "enhanced": 2,
+      "diff": 0
+    },
+    {
+      "char": "淼",
+      "baseline": 3,
+      "enhanced": 3,
+      "diff": 0
+    },
+    {
+      "char": "森",
+      "baseline": 1,
+      "enhanced": 1,
+      "diff": 0
+    },
+    {
+      "char": "炎",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    },
+    {
+      "char": "犇",
+      "baseline": 2,
+      "enhanced": 2,
+      "diff": 0
+    },
+    {
+      "char": "鱻",
+      "baseline": 2,
+      "enhanced": 2,
+      "diff": 0
+    },
+    {
+      "char": "氵",
+      "baseline": 1,
+      "enhanced": 1,
+      "diff": 0
+    },
+    {
+      "char": "火",
+      "baseline": 1,
+      "enhanced": 1,
+      "diff": 0
+    },
+    {
+      "char": "木",
+      "baseline": 1,
+      "enhanced": 1,
+      "diff": 0
+    },
+    {
+      "char": "石",
+      "baseline": 1,
+      "enhanced": 1,
+      "diff": 0
+    },
+    {
+      "char": "犭",
+      "baseline": 2,
+      "enhanced": 1,
+      "diff": -1
+    }
+  ]
+}

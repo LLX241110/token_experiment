@@ -18,11 +18,11 @@ from openai import OpenAI
 GRADIENT_CHARS = [
     {"char": "清", "correct_phonetic": "青", "correct_pinyin": "qīng",  "prior": 10},
     {"char": "泗", "correct_phonetic": "四", "correct_pinyin": "sì",    "prior": 8},
-    {"char": "洧", "correct_phonetic": "有", "correct_pinyin": "wěi",   "prior": 6},
+    {"char": "泫", "correct_phonetic": "玄", "correct_pinyin": "xuàn",  "prior": 6},
     {"char": "浕", "correct_phonetic": "尽", "correct_pinyin": "jìn",   "prior": 4},
-    {"char": "淠", "correct_phonetic": "㐟", "correct_pinyin": "pì",    "prior": 3},
-    {"char": "洣", "correct_phonetic": "米", "correct_pinyin": "mǐ",    "prior": 2},
-    {"char": "浯", "correct_phonetic": "吾", "correct_pinyin": "wú",    "prior": 1},
+    {"char": "湸", "correct_phonetic": "亮", "correct_pinyin": "liàng", "prior": 3},
+    {"char": "洭", "correct_phonetic": "匡", "correct_pinyin": "kuāng", "prior": 2},
+    {"char": "泶", "correct_phonetic": "学", "correct_pinyin": "xué",   "prior": 1},
 ]
 
 # 统一干预：错误声旁「土」（读 tǔ）
