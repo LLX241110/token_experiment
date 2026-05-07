@@ -2,7 +2,7 @@
 
 > 核心问题：如果用拼音/部首等「字典信息」辅助大模型处理中文，会有什么效果？
 
-**版本**：v0.6 · **最后更新**：2026-05-07
+**版本**：v0.7 · **最后更新**：2026-05-07
 
 ---
 
@@ -142,7 +142,7 @@ gpt-4o-mini 低先验时：混乱崩塌，产生第三个读音
 | 声旁识别错误 | 有（炇猜声旁"夭"） | 较少 |
 | full_enhanced 读音提升 | **显著**（从错到对） | 轻微 |
 | 增强 prompt 主要价值 | **纠错** | **补充读音** |
-| H6 临界区（先验置信度） | ~3–5（预测，待验证） | **6–7**（已验证） |
+| H6 临界区（先验置信度） | **~5–6**（已验证） | **6–7**（已验证） |
 
 ---
 
@@ -151,7 +151,7 @@ gpt-4o-mini 低先验时：混乱崩塌，产生第三个读音
 | 变体 | 方法 | 状态 |
 |------|------|------|
 | **A** | Prompt 增强（不改模型） | ✅ 完成 |
-| **B** | Tokenizer 重训练 | ✅ 概念验证完成 |
+| **B** | Tokenizer 重训练 | ✅ 完成（小规模+大规模双验证） |
 | **C** | 检索增强（RAG思路） | 📋 待做 |
 | **D** | 对比破坏型 | ✅ 完成 |
 | **E** | 跨语言迁移 | 📋 待做 |
@@ -171,6 +171,11 @@ token_experiment/
 │   ├── auto_tester.py                # 自动化脚本（需 API Key）
 │   ├── MANUAL_TEST_GUIDE.md          # 无需 API Key 的上手指南
 │   └── results/                      # 实验结果
+├── variant_B_tokenizer/
+│   ├── train_tokenizer.py             # 小规模训练脚本（vocab=3000）
+│   ├── train_tokenizer_large.py       # 大规模训练脚本（vocab=30000）
+│   ├── models/                        # 训练好的 tokenizer 文件
+│   └── results/                       # 实验结果和分析报告
 ├── discussion_log_2026-04-24.md      # 完整研究过程记录
 └── FINDINGS.md                       # 核心发现汇总
 ```
@@ -207,6 +212,19 @@ ANTHROPIC_API_KEY="sk-ant-..." python3 auto_tester.py --provider anthropic
 OPENAI_API_KEY="your-key" OPENAI_BASE_URL="https://api.chatanywhere.tech/v1" python3 auto_tester.py --provider openai
 ```
 
+### 变体B：Tokenizer 重训练
+
+```bash
+cd variant_B_tokenizer
+pip install tokenizers
+
+# 小规模实验（vocab=3000，秒级完成）
+python3 train_tokenizer.py
+
+# 大规模实验（vocab=30000，约5分钟）
+python3 train_tokenizer_large.py
+```
+
 ---
 
 ## 假设验证状态
@@ -218,15 +236,19 @@ OPENAI_API_KEY="your-key" OPENAI_BASE_URL="https://api.chatanywhere.tech/v1" pyt
 | H3 | 联合信息效果更好 | ✅ 验证 |
 | H4 | 常见字加注释造成干扰 | ✅ 完全验证 |
 | H5 | 声旁失效时忠实犯错 | ✅ 修正：是 H6 的特例 |
-| H6 | 先验越低，干扰越大，临界区置信度 6–7 | ✅ 完全验证 |
+| H6 | 先验越低，干扰越大 | ✅ 两模型验证 — Claude 临界区 6–7，GPT ~5–6 |
+| H-B | 部首注释语料提升 tokenization 效率 | ✅ 双规模验证 |
 
-## 今日新增发现
+## 变体B 核心结论
 
-**GPT 临界区约 5–6**（校准版梯度实验）：比 Claude（6–7）低约1个单位，低先验时行为为混乱崩塌（乱猜 t 声母的读音），而非 Claude 的干净偏转。
-
-**变体B 概念验证通过**：部首/声旁注释语料让 7/8 个生僻字从 2 tokens 合并为 1 token，常用字无负面影响。训练阶段和推理阶段，字典信息都有价值。
+| 条件 | 生僻字改善 | 结论 |
+|------|-----------|------|
+| 小规模（vocab=3000，增强语料） | 7/8 从 2→1 token | 增强语料是**关键因素** |
+| 大规模（vocab=30000，baseline） | 7/8 自动改善 | **词表大小是根本因素** |
+| 大规模（vocab=30000，增强语料） | 再额外改善 4 个字 | 增强语料是**补充因素** |
+| 任何规模（叠加构字：淼/犇） | 无改善 | BPE 的**硬天花板** |
 
 ## 待做
 
 - **变体E**：跨语言迁移（氵=水的规律能否迁移到日语汉字）
-- **变体B 扩大规模**：百万级语料 + 更大词表验证
+- **变体F**：教育场景模拟

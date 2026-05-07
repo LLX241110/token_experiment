@@ -5,3 +5,8 @@ __pycache__/
 .env
 *.json.bak
 results/*.json
+# 大语料文件不上传
+variant_B_tokenizer/data/corpus_large_*.txt
+# Claude 内部 skills 目录不上传
+.claude/
+variant_B_tokenizer/.claude/
