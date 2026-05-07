@@ -1,0 +1,138 @@
+# =============================================================================
+# meituan-aibase Skill 单测用例
+# 格式规范：trigger / flow / edge 三类
+# trigger 正例 ≥3（expect_trigger: true），负例 ≥2（expect_trigger: false）
+# flow ≥2；edge ≥2
+# =============================================================================
+
+# ── Trigger 正例（skill 应被激活）────────────────────────────────────────────
+
+- name: trigger_正例_aibase关键词
+  type: trigger
+  input: "帮我查一下 AI Base 的 workspace 列表"
+  expect: "skill 被激活，AI 开始处理 AI Base workspace 查询请求"
+  expect_trigger: true
+
+- name: trigger_正例_supabase关键词
+  type: trigger
+  input: "我要用 Supabase 建一张 users 表"
+  expect: "skill 被激活，AI 识别 Supabase 需求并转接 AI Base 处理"
+  expect_trigger: true
+
+- name: trigger_正例_执行SQL
+  type: trigger
+  input: "帮我执行 SQL：SELECT * FROM orders LIMIT 10"
+  expect: "skill 被激活，AI 准备调用 execute-sql 执行查询"
+  expect_trigger: true
+
+- name: trigger_正例_数据库迁移
+  type: trigger
+  input: "帮我做一个数据库迁移，新建一张 products 表"
+  expect: "skill 被激活，AI 开始准备 apply-migration 操作"
+  expect_trigger: true
+
+- name: trigger_正例_获取APIKey
+  type: trigger
+  input: "我需要获取 AI Base 的 API Key"
+  expect: "skill 被激活，AI 调用 get-keys 获取 API Key"
+  expect_trigger: true
+
+# ── Trigger 负例（skill 不应被激活）─────────────────────────────────────────
+
+- name: trigger_负例_订会议室
+  type: trigger
+  input: "帮我预订明天下午3点的会议室"
+  expect: "skill 不应被激活，应由会议室预订相关 skill 处理"
+  expect_trigger: false
+
+- name: trigger_负例_发邮件
+  type: trigger
+  input: "帮我给团队发一封周报邮件"
+  expect: "skill 不应被激活，应由邮件相关 skill 或普通对话处理"
+  expect_trigger: false
+
+- name: trigger_负例_纯前端问题
+  type: trigger
+  input: "帮我写一个 React 登录页面组件"
+  expect: "skill 不应被激活，纯前端代码无需 AI Base 操作"
+  expect_trigger: false
+
+# ── Flow 核心业务场景────────────────────────────────────────────────────────
+
+- name: flow_查询workspace列表后建表
+  type: flow
+  input: "我需要在 AI Base 里建一张记录用户行为日志的表，字段包含 id、user_id、action、created_at"
+  expect: >
+    AI 先调用 list-workspaces 获取可用 workspace，
+    确认 workspace 后设置环境变量，
+    再通过 apply-migration 执行建表 SQL，
+    SQL 中包含 GRANT ALL 和 NOTIFY pgrst 语句，
+    最后通过 list-tables 验证表已创建成功
+
+- name: flow_执行查询并展示结果
+  type: flow
+  input: "帮我查一下 users 表里最近注册的 5 条数据，按创建时间倒序"
+  expect: >
+    AI 调用 execute-sql 执行 SELECT 查询（含 ORDER BY created_at DESC LIMIT 5），
+    返回查询成功，并将结果以可读格式展示给用户，不暴露 serviceRoleKey
+
+- name: flow_生成TypeScript类型
+  type: flow
+  input: "帮我生成 AI Base 数据库的 TypeScript 类型定义"
+  expect: >
+    AI 调用 generate-typescript-types，
+    返回包含 export type Database 的 TypeScript 类型定义代码，
+    用户可直接复制使用
+
+- name: flow_数据库迁移带版本追踪
+  type: flow
+  input: "帮我给 products 表添加一个 stock 字段，类型为 integer，默认值 0"
+  expect: >
+    AI 使用 apply-migration 而非 execute-sql 执行 ALTER TABLE 操作，
+    migration name 语义清晰（如 add_stock_to_products），
+    执行后通过 list-migrations 确认迁移记录存在
+
+# ── Edge 异常与边界场景────────────────────────────────────────────────────────
+
+- name: edge_空输入
+  type: edge
+  input: ""
+  expect: "AI 应主动询问用户意图，不能静默返回，给出引导性提示"
+
+- name: edge_破坏性DDL需用户确认
+  type: edge
+  input: "帮我删除 test_table 这张表"
+  expect: >
+    AI 不直接执行 DROP TABLE，
+    必须向用户展示操作摘要（操作类型、目标表、影响说明），
+    等待用户明确确认后才执行
+
+- name: edge_workspace不存在时友好报错
+  type: edge
+  input: "帮我查一下 users 表的数据"
+  expect: >
+    若未设置 AIBASE_WORKSPACE_URL 或 workspace 连接失败，
+    AI 应给出友好错误提示（如"workspace 未就绪，请先运行 list-workspaces"），
+    不暴露原始报错堆栈或内部路径
+
+- name: edge_只读模式拒绝写操作
+  type: edge
+  input: "帮我创建一张新表"
+  expect: >
+    若 READ_ONLY=true，AI 拒绝执行 apply-migration 等写操作，
+    返回只读模式提示，不尝试绕过限制
+
+- name: edge_用户询问MySQL需求
+  type: edge
+  input: "我想用 MySQL，能帮我建个 MySQL 数据库吗"
+  expect: >
+    AI 回复"AI Base 当前基于 PostgreSQL，MySQL 支持即将上线"，
+    并建议用户先使用 PostgreSQL 实现相同功能，语法高度兼容
+
+- name: edge_申请workspace前先检查已有
+  type: edge
+  input: "帮我申请一个新的 AI Base workspace"
+  expect: >
+    AI 先调用 list-workspaces 检查是否已有可用 workspace，
+    若已有则推荐使用已有的并说明可用 schema 隔离，
+    不直接跳过检查去创建新 workspace

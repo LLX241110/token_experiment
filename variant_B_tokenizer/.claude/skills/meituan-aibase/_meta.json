@@ -1,0 +1,7 @@
+{
+  "slug": "meituan-aibase",
+  "version": "0.1.0",
+  "changelog": {
+    "0.1.0": "初版：pgrest 能力（SQL/表管理/迁移/TS类型），管控面留桩，Storage/EdgeFunction 暂不支持"
+  }
+}

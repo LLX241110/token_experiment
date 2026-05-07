@@ -1,0 +1,4 @@
+# AI Base Skill 依赖
+# TODO: 将 supabase 包地址替换为美团内部 pip 源
+supabase>=2.0.0
+httpx>=0.24.0
