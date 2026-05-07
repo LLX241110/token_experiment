@@ -1,0 +1,26 @@
+{
+  "description": "变体C字典数据库：从test_cases.json提取的字典信息，用于RAG检索实验",
+  "source": "variant_A_prompt_enhancement/test_cases.json",
+  "chars": {
+    "汸": {"radical": "氵", "phonetic": "方", "pinyin": "fāng", "meaning": "水名"},
+    "炇": {"radical": "火", "phonetic": "攵", "pinyin": "fū", "meaning": "火也"},
+    "杻": {"radical": "木", "phonetic": "丑", "pinyin": "niǔ", "meaning": "树名"},
+    "犴": {"radical": "犭", "phonetic": "干", "pinyin": "àn", "meaning": "古代乡亭的拘留所"},
+    "砯": {"radical": "石", "phonetic": "平", "pinyin": "pīng", "meaning": "水击岩石的声音"},
+    "靛": {"radical": "青", "phonetic": "定", "pinyin": "diàn", "meaning": "深蓝色染料"},
+    "驸": {"radical": "马", "phonetic": "付", "pinyin": "fù", "meaning": "驸马，古代皇帝的女婿"},
+    "谥": {"radical": "讠", "phonetic": "益", "pinyin": "shì", "meaning": "古代帝王/名人死后所加的称号"},
+    "淦": {"radical": "氵", "phonetic": "金", "pinyin": "gàn", "meaning": "水渗入船中"},
+    "燊": {"radical": "火", "phonetic": "莘", "pinyin": "shēn", "meaning": "火盛貌"},
+    "犇": {"radical": "牛", "phonetic": "", "pinyin": "bēn", "meaning": "牛奔跑，三牛叠加会意字"},
+    "虪": {"radical": "虎", "phonetic": "", "pinyin": "shù", "meaning": "虎行貌，三虎叠加会意字"},
+    "龘": {"radical": "龙", "phonetic": "", "pinyin": "dá", "meaning": "群龙腾飞貌，三龙叠加会意字"},
+    "鱻": {"radical": "鱼", "phonetic": "", "pinyin": "xiān", "meaning": "鲜的异体字，新鲜之义，三鱼叠加会意字"},
+    "浯": {"radical": "氵", "phonetic": "吾", "pinyin": "wú", "meaning": "水名，在山东"},
+    "棻": {"radical": "木", "phonetic": "分", "pinyin": "fēn", "meaning": "有香气的木材"},
+    "朸": {"radical": "木", "phonetic": "力", "pinyin": "lè", "meaning": "木纹"},
+    "氍": {"radical": "毛", "phonetic": "区", "pinyin": "qú", "meaning": "毛织物，常见「氍毹」（毛毯）"},
+    "汭": {"radical": "氵", "phonetic": "内", "pinyin": "ruì", "meaning": "河流汇合处"},
+    "的": {"radical": "白", "phonetic": "", "pinyin": "de/dí/dì", "meaning": "结构助词（常见字，用于干扰实验）"}
+  }
+}
