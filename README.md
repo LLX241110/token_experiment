@@ -2,7 +2,7 @@
 
 > 核心问题：如果用拼音/部首等「字典信息」辅助大模型处理中文，会有什么效果？
 
-**版本**：v0.3 · **最后更新**：2026-04-29
+**版本**：v0.4 · **最后更新**：2026-05-07
 
 ---
 
@@ -112,14 +112,16 @@ H5 是 H6 的特例：先验越弱，越无法识别声旁失效。
 
 ---
 
-## 模型对比
+## 模型对比（gpt-4o-mini vs Claude Opus 4.7）
 
-| 指标 | GPT-4 | Claude Opus 4.7 |
-|------|-------|-----------------|
-| baseline 均分 | ~6/10 | **9.2/10** |
-| 生僻字声旁识别 | 易出现幻觉（猜错声旁） | 较准确 |
-| 增强 prompt 价值 | **纠错**（+4分） | **补充读音**（+0.6分） |
-| 声旁失效识别 | 不具备 | 不具备 |
+| 指标 | gpt-4o-mini | Claude Opus 4.7 |
+|------|------------|----------------|
+| baseline 语义推断 | ~8/10 | **9.2/10** |
+| baseline 读音推断 | **弱**（P1 汸猜错 xiá） | 较强 |
+| 声旁识别错误 | 有（炇猜声旁"夭"） | 较少 |
+| full_enhanced 读音提升 | **显著**（从错到对） | 轻微 |
+| 增强 prompt 主要价值 | **纠错** | **补充读音** |
+| H6 临界区（先验置信度） | ~3–5（预测，待验证） | **6–7**（已验证） |
 
 ---
 
@@ -175,10 +177,13 @@ python3 experiment_runner.py --case D_FU --variant-d
 
 ```bash
 cd variant_A_prompt_enhancement
-pip install anthropic
+pip install anthropic openai
 
-export ANTHROPIC_API_KEY="sk-ant-..."
-python3 auto_tester.py --provider anthropic
+# Claude
+ANTHROPIC_API_KEY="sk-ant-..." python3 auto_tester.py --provider anthropic
+
+# OpenAI / 第三方转发（如 ChatAnywhere）
+OPENAI_API_KEY="your-key" OPENAI_BASE_URL="https://api.chatanywhere.tech/v1" python3 auto_tester.py --provider openai
 ```
 
 ---
@@ -196,5 +201,5 @@ python3 auto_tester.py --provider anthropic
 
 ## 待做
 
-- 变体D + H6 梯度在 **GPT-4 上复刻**（需 API）
+- **H6 梯度实验 gpt-4o-mini 复刻**：验证 GPT 临界区是否低于 Claude（预期 ~3–5）
 - **变体B**：在含部首声旁标注的语料上重训 BPE Tokenizer
